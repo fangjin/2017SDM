@@ -49,6 +49,47 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%
+%
+%\documentclass[twoside,leqno,twocolumn]{article}
+%\usepackage{ltexpprt}
+%\usepackage{subfigure}
+%\usepackage{xcolor}
+%\usepackage{url}
+%\usepackage{mathrsfs}
+%\usepackage{amsfonts}
+%\usepackage[normalem]{ulem}
+%\usepackage{array}
+%\usepackage{amsmath}
+%%\usepackage{underscore}
+%\usepackage{graphics}
+%\usepackage{graphicx}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+%\usepackage{caption}
+%
+%\begin{document}
+%%\setlength{\pdfpagewidth}{8.5in}
+%%\setlength{\pdfpageheight}{11in}
+%
+%%\setcounter{chapter}{2} % If you are doing your chapter as chapter one,
+%%\setcounter{section}{3} % comment these two lines out.
+%
+%\title{Absenteeism Detection in Social Media}
+%\author{Fang Jin\thanks{Virginia Tech.}
+%\and
+%Feng Chen\thanks{SUNY Albany.}
+%\and
+%Rupinder P. Khandpur\footnotemark[1]
+%\and
+%Chang-Tien Lu\footnotemark[1]
+%\and
+%Naren Ramakrishnan\footnotemark[1]}
+%\date{}
+%
+%\maketitle
+%
+
 
 
 \documentclass[twoside,leqno,twocolumn]{article}
@@ -76,18 +117,16 @@
 %\setcounter{section}{3} % comment these two lines out.
 
 \title{Absenteeism Detection in Social Media}
-\author{Fang Jin\thanks{Virginia Tech.}
-\and
-Feng Chen\thanks{SUNY Albany.}
-\and
-Rupinder P. Khandpur\footnotemark[1]
-\and
-Chang-Tien Lu\footnotemark[1]
-\and
-Naren Ramakrishnan\footnotemark[1]}
+\author{
+    Fang Jin\thanks{Virginia Tech.}, \hspace{1em}
+    Feng Chen\thanks{SUNY Albany.}, \hspace{1em}
+    Rupinder Paul Khandpur\footnotemark[1],\\
+    Chang-Tien Lu\footnotemark[1], \hspace{1em}
+    Naren Ramakrishnan\footnotemark[1]}
 \date{}
 
 \maketitle
+
 
 
 %\pagenumbering{arabic}
@@ -171,7 +210,7 @@ Wavelet methods based on spectral graph theory have been applied to a wide array
 
 
 \section{PROBLEM SETTING} \label{sec:problem}
-In this section, we begin by introducing the mathematical notation used in this paper and then proceed to formalize our approach to group anomaly detection. After presenting the problem statement, we provide a brief comparison of our approach with conventional solutions, and review the challenging issues that are relevant to this type of event detection problem.
+%In this section, we begin by introducing the mathematical notation used in this paper and then proceed to formalize our approach to group anomaly detection. After presenting the problem statement, we provide a brief comparison of our approach with conventional solutions, and review the challenging issues that are relevant to this type of event detection problem.
 
 \subsection{Notation}
 \label{sec:notations}
@@ -228,8 +267,8 @@ The graph wavelets focus on the intrinsic geometric structure of the graph by tr
 
 
 \section{ALGORITHMS} \label{sec:algorithm}
-In this section, we first introduce the graph Fourier transform concept, explain the interpretations of eigenvectors and eigenvalues, and then adapt them to constitute a newly defined anomaly index for graphs. We then proceed to describe graph wavelet features such as reconstruction and localization. In Section~\ref{sec:Group_Anomaly_Detection_via_graph_wavelet}, we propose a new group anomaly detection algorithm based on graph wavelets.
-%And in section~\ref{sec:Group Absenteeism Event Detection} we present the two-pass event detection algorithm.
+%In this section, we first introduce the graph Fourier transform concept, explain the interpretations of eigenvectors and eigenvalues, and then adapt them to constitute a newly defined anomaly index for graphs. We then proceed to describe graph wavelet features such as reconstruction and localization. In Section~\ref{sec:Group_Anomaly_Detection_via_graph_wavelet}, we propose a new group anomaly detection algorithm based on graph wavelets.
+
 
 \subsection{Graph Fourier Transform}
 \label{sec:Graph_Fourier_Transform}
@@ -261,7 +300,7 @@ According to the definition of eigenvalue $\lambda_l$  in Equation~\ref{eq:eigen
 \label{eq:lambda1}
 \chi_{l}^T\lambda_{l}\chi_{l}=\chi_{l}^T\mathcal{L}\chi_{l}= \sum_{e_{mn}\in E} w_
 {mn}[\chi_{l}(m)-\chi_{l}(n)]^2
-\end{equation}Since $\chi_{l}$ is normalized, and $||\chi_{l}||_2 =1$, 
+\end{equation}Since $\chi_{l}$ is normalized, and $||\chi_{l}||_2 =1$,
 \begin{equation}
 \label{eq:lambda2}
 \chi_{l}^T\lambda_{l}\chi_{l}=\lambda_l= \sum_{e_{mn}\in E} w_
@@ -273,10 +312,9 @@ components of the graph Laplacian eigenvectors are present.
 Hence, for larger $\lambda_l$, its corresponding eigenvector, $\chi_l(n)$, has larger deviation among connected vertices. According to the definition of Laplacian matrix $\mathcal{L}$, it is easy to verify that $\lambda_0=0$ since $\mathcal{L}\cdot\vec{\textbf{1}}= 0\cdot\vec{\textbf{1}}$, where $\vec{\textbf{1}}=\{1,1,1,...,1\}$, and $\chi_o(n)=\frac{\vec{\textbf{1}}}{\sqrt{N}}$. Thus, $\chi_o(n)=\frac{\vec{\textbf{1}}}{\sqrt{N}}$ means that $\chi_o(n)$ is constant on each vertex, and that
 there is no deviation among any two vertices in $\chi_0(n)$. For this reason, $\chi_0(n)$ is considered as the least abnormal component of $\mathbf{G}$. Similarly, $\chi_{N-1}(n)$ is considered as the most abnormal component of $\mathbf{G}$.
 
-Figure~\ref{fig:graph_G} shows an undirected graph $\mathbf{G_1}$ where each edge's weight is $1$. Figure~\ref{fig:frequency1} shows  $\mathbf{G_1}$'s six eigenvectors distributions along each vertex. We can see that
-$\chi_0$ is constant on very vertex, and has the smallest deviations along each edge. $\chi_5$ has the largest deviations, and the difference of $\chi_5$ along each edge is larger than any other eigenvector on average.
 
-\begin{figure}[h]
+
+\begin{figure}[t]
 	\centering
     {
 		\includegraphics[height=0.8in] {figures/graph_G.png}
@@ -287,9 +325,15 @@ $\chi_0$ is constant on very vertex, and has the smallest deviations along each 
 \end{figure}
 
 
+Figure~\ref{fig:graph_G} shows an undirected graph $\mathbf{G_1}$ where each edge's weight is $1$. Figure~\ref{fig:frequency1} shows  $\mathbf{G_1}$'s six eigenvectors distributions along each vertex. We can see that
+$\chi_0$ is constant on very vertex, and has the smallest deviations along each edge. $\chi_5$ has the largest deviations, and the difference of $\chi_5$ along each edge is larger than any other eigenvector on average.
+
+
+
+
 \begin{figure}[ht]
 	\centering
-    \vspace{-3mm}
+    \vspace{-5mm}
 	\subfigure[]{
 		\includegraphics[width= 2.4in,height=0.9in] {figures/frequency.png}
 		\label{fig:frequency1}
@@ -305,7 +349,7 @@ $\chi_0$ is constant on very vertex, and has the smallest deviations along each 
 		\label{fig:same_graph}
 	}
 
-	\caption{(a): Eigenvector distribution along each vertex in graph $\mathbf{G_1}$.  (b): anomaly index $\gamma_f(l)$ of $f_1=[2,3,4,3,2,1]$ on graph $\mathbf{G_1}$. (c): anomaly index $\gamma_f(l)$ of $f_1=[2,3,4,3,2,1]$  and $f_2=[2,2,-3,4,3,1]$ on graph $\mathbf{G_1}$, where $\gamma_{f_1}=0.905$, and $\gamma_{f_1}=0.073$, labelled in red ovals.}
+	\caption{(a): Eigenvector distribution along each vertex in graph $\mathbf{G_1}$.  (b): anomaly index $\gamma_f(l)$ of $f_1=[2,3,4,3,2,1]$ on graph $\mathbf{G_1}$. (c): anomaly index $\gamma_f(l)$ of $f_1=[2,3,4,3,2,1]$  and $f_2=[2,2,-3,4,3,1]$ on graph $\mathbf{G_1}$, where $\gamma_{f_1}=0.905$, and $\gamma_{f_2}=0.073$, labelled in red ovals.}
 	\label{fig:f_on_g2}
 \end{figure}
 
@@ -326,8 +370,8 @@ Here, $\gamma_f(l;\mathbf{G})$ refers to the anomaly extension of $\chi_l$ in $f
 For brevity, $\gamma_f(l;\mathbf{G})$  and $\gamma_f(\mathbf{G})$ are shortened as $\gamma_f(l)$ and $\gamma_f$, respectively, when $\mathbf{G}$ is known.
 
 Figure~\ref{fig:g1_gamma} plots the anomaly index $\gamma_f(l)$ of $f_1$ on graph $\mathbf{G_1}$, where $f_1=[2,3,4,3,2,1]$. The six markers on the dashed blue are the six eigenvalues of $\mathbf{G}$. The yellow line is $|\hat{f}(l)|$, and the pink line is the anomaly index, with $\gamma_f(l)$ for frequency $\chi_l$. Because $\gamma_f(l)$ depends on both $\lambda_l$ and its power $\hat{f}^2(l)$, for the yellow line, even though $\chi_0$ has the strongest power, its deviation $\lambda_0 = 0$, thus $\gamma_f(0)=0$. On the other hand, $\chi_5$ has the largest deviation but its power $|\hat{f}(5)|^2$ is small, which makes $\gamma_f(5)$ is also small. Considering that $\chi_4$ has a high deviation (eigenvalue) and a strong power of frequency, it has the largest anomaly index. To compare the influence of different $f$ on anomaly index, we show an example in Figure~\ref{fig:same_graph}. Setting $f_1=[2,3,4,3,2,1]$ and $f_2=[2,2,-3,4,3,1]$, we plot their anomaly index $\gamma_{f}$ and energy $|\hat{f}(l)|$ respectively.
-The light blue curves stand for anomaly indices and the
-yellow curves stand for $|\hat{f}(l)|$. The solid line stands for $f_1$, and the
+The blue curves stand for anomaly indices and the
+orange curves stand for $|\hat{f}(l)|$. The solid line stands for $f_1$, and the
 dashed line stands for $f_2$. As we can see, for high frequency $\chi_l$, $f_1$ has a larger power than $f_2$, and hence a higher anomaly index than $f_2$, where $\gamma_{f_1}=0.905$ and $\gamma_{f_2}=0.073$. This is consistent with that $f_1$ has larger deviations than $f_2$.
 
 As we discussed before, the anomaly index depends on graph structure and $f$. As shown in Figure~\ref{fig:same_graph}, different $f$ might have very different anomaly index because the power of $\chi_l$ distribution is different. Similarly, for the same signal $f$ on two different graphs, it might have very different anomaly indices. Figure~\ref{fig:f_on_g} shows two graphs with the same $f=[1,2,5,2]$. Figure~\ref{fig:new_graph} illustrates the anomaly index of $f$ on $\mathbf{G_2}$ and $\mathbf{G_3}$, where $\gamma_{f}(\mathbf{G_2})=0.073$ and $\gamma_{f}(\mathbf{G_3})=0.235$. (This is because in $\mathbf{G_3}$ because there is no edge connecting $v_2$ and $v_3$, the difference between $f(2)$ and $f(3)$ is not considered as an anomaly.)
@@ -535,17 +579,17 @@ As long as the scale level $J$ is high enough, $f$ can be well decomposed into t
 
 
 \section{EXPERIMENTAL RESULTS} \label{sec:experiment}
-This section discusses the application of our approach for detecting group anomalies. We begin by briefly describing the dataset used for our experiments in Section~\ref{sec:data_collection} and then move on to discussing the implementation details of how the graph $\mathbf{G}$ is assembled; we construct the graph wavelets $\psi_{s,a}$ in Section~\ref{sec:experimental_setup}. The subsequent section presents the group anomaly detection performance for identifying protest events.
-%In Section~\ref{sec:highlighted_results}, we describe three case studies that illustrate how the graph wavelet model is able to capture absenteeism events such as disaster scenarios.
+%This section discusses the application of our approach for detecting group anomalies. We begin by briefly describing the dataset used for our experiments in Section~\ref{sec:data_collection} and then move on to discussing the implementation details of how the graph $\mathbf{G}$ is assembled; we construct the graph wavelets $\psi_{s,a}$ in Section~\ref{sec:experimental_setup}. The subsequent section presents the group anomaly detection performance for identifying protest events.
+
 
 \begin{figure}[t]
 	\centering
 	\subfigure[]{
-		\includegraphics[width=1.4in,height=1.4in] {figures/brazil_graph_nn_5.png}
+		\includegraphics[width=1.4in,height=1.3in] {figures/brazil_graph_nn_5.png}
 		\label{fig:brazil_graph_nn_5}
 	}
 	\subfigure[]{
-		\includegraphics[width=1.4in,height=1.4in] {figures/brazil_zscore_31.png}
+		\includegraphics[width=1.4in,height=1.3in] {figures/brazil_zscore_31.png}
 		\label{fig:brazil_zscore_31}
 	}
     \vspace{-2mm}
@@ -568,20 +612,6 @@ proceed to process the geographical coordinates and the self-reported location s
 %To discern when major events occurred, we retrieved records of natural disaster related events involving earthquakes, floods, and landslides from European Emergency Response Coordination Center(ERCC)~\footnote{http://erccportal.jrc.ec.europa.eu/} and World Top Stories Timeline~\footnote{http://www.mapreport.com/}.
 
 
-\begin{figure}[t]
-	\centering
-	\subfigure[wavelet $\psi_{s_1,a}$]{
-		\includegraphics[width=1.4in,height=1.4in] {figures/s1.png}
-		\label{fig:Brazil_W_coeff_date31_s3}
-	}
-	\subfigure[wavelet $\psi_{s_2,a}$]{
-		\includegraphics[width=1.4in,height=1.4in] {figures/s2.png}
-		\label{fig:Brazil_W_coeff_date31_s5}
-	}
-    \vspace{-2mm}
-	\caption{Graph wavelets with center city $v_{83}$. $s_1$ = 1.31, $s_2$ = 0.68.}
-	\label{fig:graphwaveletscale}
-\end{figure}
 
 \subsection{Experimental Setup}
 \label{sec:experimental_setup}
@@ -612,6 +642,23 @@ the tweet volume $X$ varies vastly among cities, instead of using $X$ itself, we
 \textrm{z-score} = \frac{X-\mu}{\sigma}
 \end{equation}where $\mu$ is the mean value of the previous $30$ day tweets volume and $\sigma$ is the corresponding standard deviation. As shown in Figure~\ref{fig:brazil_zscore_31}, different
 node colors denote different z-score values.
+
+
+\begin{figure}[t]
+	\centering
+	\subfigure[wavelet $\psi_{s_1,a}$]{
+		\includegraphics[width=1.4in,height=1.3in] {figures/s1.png}
+		\label{fig:Brazil_W_coeff_date31_s3}
+	}
+	\subfigure[wavelet $\psi_{s_2,a}$]{
+		\includegraphics[width=1.4in,height=1.3in] {figures/s2.png}
+		\label{fig:Brazil_W_coeff_date31_s5}
+	}
+    \vspace{-2mm}
+	\caption{Graph wavelets with center city $v_{83}$. $s_1$ = 1.31, $s_2$ = 0.68.}
+	\label{fig:graphwaveletscale}
+\end{figure}
+
 
 \paragraph{Kernel function $g(x)$ and scaling function $h(x)$.}
 Our choice for the wavelet generating kernel function, $g(x)$, and scaling function $h(x)$ is motivated by our goal to achieve scale-dependent localization. We follow the kernel function setting in~\cite{hammond2011wavelets}, which behaves as a monic power near the origin, and has power law decay for large x. $g(x)$ and $h(x)$ are set as:
@@ -668,13 +715,13 @@ Venezuela & Baseline & 0.078 &0.053 & 0.059 \\
 
 
 \subsection{Performance}
-The data for this experiment was gathered for three countries experiencing major protest events, namely Brazil, Mexico and Venezuela, from Jan 2013 to Dec 2014. Taking the Gold Standard Report (GSR)~\cite{ramakrishnan2014beating} as representing ground truth, we applied our new graph wavelet approach as follows. For each day, we determine whether there are any anomalies detected. If there are, 
+The data for this experiment was gathered for three countries experiencing major protest events, namely Brazil, Mexico and Venezuela, from Jan 2013 to Dec 2014. Taking the Gold Standard Report (GSR)~\cite{ramakrishnan2014beating} as representing ground truth, we applied our new graph wavelet approach as follows. For each day, we determine whether there are any anomalies detected. If there are,
 for each anomaly, we
 identify the group of anomalous cities and compare this set
 with the GSR to determine if the selected cities actually experienced protest events on that day and thus show how many of the model's predictions matched the ground truth and how many did not. (Note that there are many causes of absenteeism besides civil unrest but here we are attempting to determine if our
 detected events can serve as a signal for such protest events.)
 We use recall, precision, and the F-measure to evaluate the model's performance. To evaluate the effectiveness of our new graph wavelet approach, we also compared the results with those obtained using intuitive approaches such as frequency based random assignment, referred to here as the baseline model, and z-score based selection methods. The baseline model was built according to the historical protest records for each city and thus the model's predictions of the future occurrence of protests were based on frequency. The z-score approach entails
-selecting the group of cities whose z-score crosses the threshold with $|\textr{z-score}|>3$.
+selecting the group of cities whose z-score crosses the threshold with $|\text{z-score}|>3$.
 
 
 We compared the performance of these three models over the two year test period; the overall results are shown in Table~\ref{table:models_compare}. Generally speaking, the new graph wavelet approach exhibited better precision, recall, and F-measure scores than the baseline model across all three countries. The mean F-measure for the graph wavelet detection across models and countries is greater than that achieved by either of the other prediction models. Interestingly, the graph wavelet approach appears to operate at different efficiency levels for each country. The false positives from this study are likely to be useful
@@ -701,7 +748,9 @@ Supported by the Intelligence Advanced Research Projects Activity (IARPA) via De
 
 
 \bibliographystyle{abbrv}
+
 \bibliography{sigproc}
+
 \end{document}
 
 % End of ltexpprt.tex
